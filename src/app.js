@@ -1,4 +1,7 @@
 const express = require('express')
+const router = require('./routes')
+
+require('./infra/dataBase/mongo')
 
 class App {
     constructor(){
