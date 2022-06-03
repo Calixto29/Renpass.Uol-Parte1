@@ -1,18 +1,18 @@
-const { config } = require('dotenv');
+//const { config } = require('dotenv');
 const mongoose = require('mongoose');
-const conig = required('../../../config/config');
+const config = require('../../../config/config');
 
-class Database{
+class DataBase{
     constructor() {
         this.connect();
     }
     connect() {
-        return mongoose.connect(`mongodb://${config.database.host}/${config.database.collection}`),
-        {
+        return mongoose.connect(`mongodb://${config.database.host}/${config.database.collection}`, {
             user: config.database.username,
-            pass: config.database.password,
-        }
+            pass: config.database.password
+        },
+        ) 
     }
 }
 
-module.exports = new Database().connect();
+module.exports = new DataBase().connect();

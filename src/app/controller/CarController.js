@@ -1,4 +1,4 @@
-const CarService = require('service')
+const CarService = require('../repository/CarRepository')
 class  CarController {    
     creat(req, res) {
         try {

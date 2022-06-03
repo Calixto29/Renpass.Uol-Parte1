@@ -1,4 +1,4 @@
-const CarController = require('');
+const CarController = require('../app/controller/CarController');
 
 module.exports = (server, routes, prefix ='/api/v1/car') => { //prefix evita de criar várias rotas
     routes.post('/', CarController.create);

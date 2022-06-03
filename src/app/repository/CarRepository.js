@@ -1,5 +1,8 @@
+const CarSchema = require('../schema/CarSchema') 
 class CarRepository {
-    create(payload) {
-        return CarSchema.create(payload); //Schema pct mongoose
+    async create(payload) {
+        return await CarSchema.create(payload); //Schema pct mongoose
     }
 }
+
+module.exports = new CarRepository();
