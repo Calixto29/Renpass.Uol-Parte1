@@ -10,6 +10,18 @@ class CarService{
         const result = await CarRepository.list(payload);
     }
 
+    async listId (payload) {
+        const result = await CarRepository.listId(payload);
+    }
+
+    async put (payload) {
+        const result = await CarRepository.put(payload);
+    }
+    
+    async delete (payload) {
+        const result = await CarRepository.delete(payload);
+    }
+
 
 }
 

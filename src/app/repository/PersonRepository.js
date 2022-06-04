@@ -3,6 +3,19 @@ class PersonRepository {
     async create(payload) {
         return await PersonSchema.create(payload); //Schema pct mongoose
     }
+    async list(payload) {
+        return await PersonSchema.find(payload);
+    }
+    async listId(payload) {
+        return PersonSchema.findById(payload)
+    }
+    async updatePersonId(id, body) {
+        return PersonSchema.findByIdAndUpdate(id, body)
+    }
+    async deletePerson(payload) {
+        return PersonSchema.findByIdAndDelete(id, body);
+    }
+    
 }
 
 module.exports = new PersonRepository();
