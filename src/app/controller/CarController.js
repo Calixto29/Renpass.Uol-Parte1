@@ -1,4 +1,4 @@
-const CarService = require('../repository/CarRepository')
+const CarService = require('../service/CarService')
 class CarController {    
     async create(req, res) {
         try {
@@ -8,37 +8,37 @@ class CarController {
             return res.status(400).json(error);            
         }
     } 
-    async list(req, res) {
-        const payload = req.query
+    async listCar(req, res) {
+        const payload = req.query;
         try {
-            const result = await CarService.list(payload) //requisição e o corpo da req.
+            const result = await CarService.listCar(payload) //requisição e o corpo da req.
             return res.status(200).json(result);
         } catch(error) {
             return res.status(400).json(error);            
         }
     }
-    async listId(req, res) {
+    async listCarId(req, res) {
         const payload = req.query
         try {
-            const result = await CarService.listId(payload) //requisição e o corpo da req.
+            const result = await CarService.listCarId(payload) //requisição e o corpo da req.
             return res.status(200).json(result);
         } catch(error) {
             return res.status(400).json(error);            
         }
     }
-    async put(req, res) {
+    async putCar(req, res) {
         const payload = req.query
         try {
-            const result = await CarService.put(payload) //requisição e o corpo da req.
+            const result = await CarService.putCar(payload) //requisição e o corpo da req.
             return res.status(200).json(result);
         } catch(error) {
             return res.status(400).json(error);            
         }
     }
-    async delete(req, res) {
+    async deleteCar(req, res) {
         const peyload = req.query
         try {
-            const result = await CarService.delete(peyload) //requisição e o corpo da req.
+            const result = await CarService.deleteCar(peyload) //requisição e o corpo da req.
             return res.status(200).json(result);
         } catch(error) {
             return res.status(400).json(error);            

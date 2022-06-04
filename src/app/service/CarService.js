@@ -6,20 +6,21 @@ class CarService{
         return result; 
     }
 
-    async list (payload) {
-        const result = await CarRepository.list(payload);
+    async listCar (payload) {
+        const result = await CarRepository.listCar(payload);
+        return result;
     }
 
-    async listId (payload) {
-        const result = await CarRepository.listId(payload);
+    async listCarId (payload) {
+        const result = await CarRepository.listCarId(payload);
     }
 
-    async put (payload) {
-        const result = await CarRepository.put(payload);
+    async putCar (payload) {
+        const result = await CarRepository.putCar(payload);
     }
     
-    async delete (payload) {
-        const result = await CarRepository.delete(payload);
+    async deleteCar (payload) {
+        const result = await CarRepository.deleteCar(payload);
     }
 
 

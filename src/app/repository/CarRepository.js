@@ -3,17 +3,17 @@ class CarRepository {
     async create(payload) {
         return await CarSchema.create(payload); //Schema pct mongoose
     }
-    async list(payload) {
+    async listCar(payload) {
         return await CarSchema.find(payload);
     }
-    async listId(payload) {
+    async listCarId(payload) {
         return await CarSchema.findById(payload);
     }
-    async put(payload) {
-        return await CarSchema.put(payload);
+    async putCar(payload) {
+        return await CarSchema.putCar(payload);
     }
-    async delete(payload) {
-        return await CarSchema.delete(payload);
+    async deleteCar(payload) {
+        return await CarSchema.deleteCar(payload);
     }
 }
 

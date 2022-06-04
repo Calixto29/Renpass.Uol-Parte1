@@ -20,7 +20,59 @@ const CarSchema = new mongoose.Schema({
     year: {
         type: String,
         required: true
-    } //acessórios
+    },
+    accessories: [
+        {
+            description: {
+                type: String,
+                required: true,
+                unique: true
+
+            },
+            description: {
+                type: String,
+                required: false,
+                unique: true
+
+            },
+            description: {
+                type: String,
+                required: false,
+                unique: true
+
+            },
+            description: {
+                type: String,
+                required: false,
+                unique: true
+
+            },
+            description: {
+                type: String,
+                required: false,
+                unique: true
+
+            },
+            description: {
+                type: String,
+                required: false,
+                unique: true
+
+            },
+            description: {
+                type: String,
+                required: false,
+                unique: true
+
+            },
+            description: {
+                type: String,
+                required: true,
+                unique: true
+
+            }
+        }
+    ] 
 });
 
 const Car = mongoose.model('Car', CarSchema);

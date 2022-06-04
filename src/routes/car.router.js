@@ -2,16 +2,12 @@ const CarController = require('../app/controller/CarController');
 
 module.exports = (server, routes, prefix ='/api/v1/car') => { //prefix evita de criar várias rotas
     routes.post('/', CarController.create);
-    routes.get('/', CarController.list);
-    routes.get('/:id', CarController.listId);    
-    routes.put('/:id', CarController.put);
-    routes.delete('/:id', CarController.delete)
+    routes.get('/', CarController.listCar);
+    routes.get('/:id', CarController.listCarId);    
+    routes.put('/:id', CarController.putCar);
+    routes.delete('/:id', CarController.deleteCar)
+    
     server.use(prefix, routes);
-
-    // routes.get('/teste', (req, res) => {
-    //     res.json('teste')
-    // });
-    // server.use(prefix, routes);
 };
 
 
