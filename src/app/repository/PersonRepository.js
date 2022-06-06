@@ -1,3 +1,4 @@
+// const res = require('express/lib/response');
 const PersonSchema = require('../schema/PersonSchema') 
 class PersonRepository {
     async create(payload) {
@@ -9,11 +10,12 @@ class PersonRepository {
     async listId(payload) {
         return await PersonSchema.findById(payload)
     }
-    async updatePersonId(id, body) {
+    async updatePersonId(id, body) {           
         return PersonSchema.findByIdAndUpdate(id, body)
     }
-    async deletePerson(payload) {
-        return PersonSchema.findByIdAndDelete(id, body);
+    async deletePerson(id) {
+        return PersonSchema.findByIdAndDelete(id);
+
     }
     
 }

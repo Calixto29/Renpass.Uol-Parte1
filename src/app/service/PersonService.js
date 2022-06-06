@@ -1,7 +1,7 @@
 const PersonRepository = require ("../repository/PersonRepository")
 class PersonService{
 
-    async create(payload) { // payload = req.body
+    async create(payload) { 
         const result = await PersonRepository.create(payload);
         return result; 
     }
@@ -14,10 +14,12 @@ class PersonService{
         return result;
     }
     async updatePersonId(id, body) {
+        // console.log(req.params)
         const result = await PersonRepository.updatePersonId(id, body);
+        return result;
     }
-    async deletePersonId(id, body) {
-        const result = await PersonRepository.deletePersonId(id, body);        
+    async deletePersonId(id) {
+        const result = await PersonRepository.deletePersonId(id);        
     }    
 }
 
