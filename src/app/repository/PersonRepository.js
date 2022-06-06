@@ -7,7 +7,7 @@ class PersonRepository {
         return await PersonSchema.find(payload);
     }
     async listId(payload) {
-        return PersonSchema.findById(payload)
+        return await PersonSchema.findById(payload)
     }
     async updatePersonId(id, body) {
         return PersonSchema.findByIdAndUpdate(id, body)

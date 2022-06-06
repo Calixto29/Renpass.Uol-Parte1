@@ -1,4 +1,6 @@
 const PersonService = require('../service/PersonService')
+const retorno = require('../../middleware/returno')
+
 class  PersonController {    
     async create(req, res) {
         try {
@@ -10,6 +12,8 @@ class  PersonController {
     }
     async list(req, res) {
         const payload = req.query;
+        const resultado = retorno(payload);
+        console.log(resultado)
         try {
             const result = await PersonService.list(payload);
             return res.status(200).json(result);
@@ -18,9 +22,10 @@ class  PersonController {
         }
     }
     async listId(req, res) {
-        try {
+        try { 
+            console.log(req.params.id)
             const result = await PersonService.listId(req.params.id);
-            return res.status(200),json(result);        
+            return res.status(200).json(result);        
         } catch(error)    {
             return res.status(400).json(error);
         }
