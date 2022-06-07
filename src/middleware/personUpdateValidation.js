@@ -3,12 +3,12 @@ const joi = require("@hapi/joi");
 module.exports = async (req, res, next) => {
 	try {
 		const authSchemaUpdatePerson = joi.object({
-            name: joi.string().min(6).required(),
-			cpf: joi.string().required(),
-			birthday: joi.string().required(),
-			email: joi.string().email().lowercase().required(),
-			password: joi.string().min(6).required(),
-			candrive: joi.string().required("yes" , "no")
+            name: joi.string().min(6),
+			cpf: joi.string(),
+			birthday: joi.string(),
+			email: joi.string().email().lowercase(),
+			password: joi.string().min(6),
+			candrive: joi.string().valid("yes" , "no")
 		});	
 
 	const { error } = await authSchemaUpdatePerson.validate(req.body, { abortEarly: true})

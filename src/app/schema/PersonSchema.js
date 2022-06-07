@@ -22,11 +22,14 @@ const PersonSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+        //select: false (faz com que o password do usuario não venho junto com os dados da pesquisa)
+
     },
     candrive: {
         type: String,
-        required: true
-    } //acessórios
+        required: true,
+        enum: ["yes", "no"]
+    } 
 });
 
 const Person = mongoose.model('Person', PersonSchema)

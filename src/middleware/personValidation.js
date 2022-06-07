@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
 			birthday: joi.string().required(),
 			email: joi.string().email().lowercase().required(),
 			password: joi.string().min(6).required(),
-			candrive: joi.string().required("yes" , "no")
+			candrive: joi.string().valid().required("yes" , "no")
 		});	
 
 	const { error } = await authSchemaPerson.validate(req.body, { abortEarly: true})
