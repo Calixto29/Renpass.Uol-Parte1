@@ -26,49 +26,49 @@ const CarSchema = new mongoose.Schema({
             description: {
                 type: String,
                 required: true,
-                unique: true
+                unique: false
 
             },
             description: {
                 type: String,
                 required: false,
-                unique: true
+                unique: false
 
             },
             description: {
                 type: String,
                 required: false,
-                unique: true
+                unique: false
 
             },
             description: {
                 type: String,
                 required: false,
-                unique: true
+                unique: false
 
             },
             description: {
                 type: String,
                 required: false,
-                unique: true
+                unique: false
 
             },
             description: {
                 type: String,
                 required: false,
-                unique: true
+                unique: false
 
             },
             description: {
                 type: String,
                 required: false,
-                unique: true
+                unique: false
 
             },
             description: {
                 type: String,
-                required: true,
-                unique: true
+                required: false,
+                unique: false
 
             }
         }

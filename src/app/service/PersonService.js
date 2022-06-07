@@ -18,8 +18,9 @@ class PersonService{
         const result = await PersonRepository.updatePersonId(id, body);
         return result;
     }
-    async deletePersonId(id) {
-        const result = await PersonRepository.deletePersonId(id);        
+    async deletePerson(payload) {
+        const result = await PersonRepository.deletePerson(payload); 
+        return result;        
     }    
 }
 

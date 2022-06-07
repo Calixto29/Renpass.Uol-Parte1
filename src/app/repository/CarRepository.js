@@ -9,11 +9,12 @@ class CarRepository {
     async listCarId(payload) {
         return await CarSchema.findById(payload);
     }
-    async putCar(payload) {
-        return await CarSchema.putCar(payload);
+    async putCar(id, body) {
+        return await CarSchema.findByIdAndUpdate(id, body);
     }
-    async deleteCar(payload) {
-        return await CarSchema.deleteCar(payload);
+    async deleteCar(id, body) {
+        return await CarSchema.findByIdAndDelete(id, body);
+        
     }
 }
 

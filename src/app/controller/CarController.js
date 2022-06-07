@@ -17,19 +17,20 @@ class CarController {
             return res.status(400).json(error);            
         }
     }
-    async listCarId(req, res) {
-        const payload = req.query
+    async listCarId(req, res) {        
         try {
-            const result = await CarService.listCarId(payload) //requisição e o corpo da req.
+            const result = await CarService.listCarId(req.params.id) //requisição e o corpo da req.
             return res.status(200).json(result);
         } catch(error) {
             return res.status(400).json(error);            
         }
     }
-    async putCar(req, res) {
-        const payload = req.query
+    async putCar(req, res) {        
         try {
-            const result = await CarService.putCar(payload) //requisição e o corpo da req.
+            const result = await CarService.putCar(
+                req.params.id,
+                req.body
+                ); //requisição e o corpo da req.
             return res.status(200).json(result);
         } catch(error) {
             return res.status(400).json(error);            
@@ -38,7 +39,7 @@ class CarController {
     async deleteCar(req, res) {
         const peyload = req.query
         try {
-            const result = await CarService.deleteCar(peyload) //requisição e o corpo da req.
+            const result = await CarService.deleteCar(req.params.id) //requisição e o corpo da req.
             return res.status(200).json(result);
         } catch(error) {
             return res.status(400).json(error);            

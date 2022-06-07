@@ -13,8 +13,8 @@ class PersonRepository {
     async updatePersonId(id, body) {           
         return PersonSchema.findByIdAndUpdate(id, body)
     }
-    async deletePerson(id) {
-        return PersonSchema.findByIdAndDelete(id);
+    async deletePerson(id, body) {
+        return PersonSchema.findByIdAndDelete(id, body);
 
     }
     

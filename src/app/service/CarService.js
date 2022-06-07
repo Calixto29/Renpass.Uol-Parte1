@@ -1,6 +1,7 @@
 const CarRepository = require('../repository/CarRepository')
 
 class CarService{
+    
     async create(payload) { // payload = req.body
         const result =  await CarRepository.create(payload);
         return result; 
@@ -13,14 +14,17 @@ class CarService{
 
     async listCarId (payload) {
         const result = await CarRepository.listCarId(payload);
+        return result;
     }
 
-    async putCar (payload) {
-        const result = await CarRepository.putCar(payload);
+    async putCar (id, body) {
+        const result = await CarRepository.putCar(id, body);
+        return result;
     }
     
     async deleteCar (payload) {
         const result = await CarRepository.deleteCar(payload);
+        return result;
     }
 
 

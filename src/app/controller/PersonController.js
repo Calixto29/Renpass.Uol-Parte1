@@ -23,7 +23,7 @@ class  PersonController {
     }
     async listId(req, res) {
         try { 
-            console.log(req.params.id)
+            // console.log(req.params.id)
             const result = await PersonService.listId(req.params.id);
             return res.status(200).json(result);        
         } catch(error)    {
@@ -32,7 +32,7 @@ class  PersonController {
     }
     async update(req, res) {
         try {            
-            console.log(req.params.id)            
+            // console.log(req.params.id)            
             const result = await PersonService.updatePersonId(
                 req.params.id,
                 req.body
