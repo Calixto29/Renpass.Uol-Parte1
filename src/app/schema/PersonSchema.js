@@ -23,7 +23,7 @@ const PersonSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    canDrive: {
+    candrive: {
         type: String,
         required: true
     } //acessórios
