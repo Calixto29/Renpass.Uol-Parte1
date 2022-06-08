@@ -10,7 +10,7 @@ const PersonSchema = new mongoose.Schema({
          required: true,
          unique: true
     },
-    birthday: {
+    birthDay: {
         type: String,
         required: true
     },
@@ -25,7 +25,7 @@ const PersonSchema = new mongoose.Schema({
         //select: false (faz com que o password do usuario não venho junto com os dados da pesquisa)
 
     },
-    candrive: {
+    canDrive: {
         type: String,
         required: true,
         enum: ["yes", "no"]

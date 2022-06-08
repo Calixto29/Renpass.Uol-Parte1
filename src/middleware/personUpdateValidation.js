@@ -4,28 +4,28 @@ const moment = require("moment");
 const authSchemaUpdatePerson = joi.object({
 	name: joi.string().min(6),
 	cpf: joi.string(),
-	birthday: joi.string(),			
+	birthDay: joi.string(),			
 	email: joi.string().email().lowercase(),
 	password: joi.string().min(6),
-	candrive: joi.string().valid("yes" , "no")
+	canDrive: joi.string().valid("yes" , "no")
 	});	
 
 module.exports = async (req, res, next) => {
 	try {
 		const reqBody = req.body;
 		
-		const birthday = moment(reqBody.birthday, "DD/MM/YYYY").format("YYYY/MM/DD");
+		const birthDay = moment(reqBody.birthDay, "DD/MM/YYYY").format("YYYY/MM/DD");
 
-		const birthdayValidate = moment().diff(birthday, "years", false) >= 18
+		const birthDayValidate = moment().diff(birthDay, "years", false) < 18
 
-		if(birthdayValidate == false) {
+		if(birthDayValidate) {
 			return res.status(400).json({
 				message: "age must be over 18"
 			})			
 		}
 		if(req.method == "PUT") {
 			await authSchemaUpdatePerson.validateAsync({				
-				...reqBody, birthday
+				...reqBody, birthDay
 			})
 		}
 
