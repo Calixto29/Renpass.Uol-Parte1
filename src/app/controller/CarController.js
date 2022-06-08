@@ -40,7 +40,7 @@ class CarController {
         const peyload = req.query
         try {
             const result = await CarService.deleteCar(req.params.id) //requisição e o corpo da req.
-            return res.status(200).json(result);
+            return res.status(200).json('successfull deleted');
         } catch(error) {
             return res.status(400).json(error);            
         }

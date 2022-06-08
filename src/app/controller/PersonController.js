@@ -45,7 +45,7 @@ class  PersonController {
     async delete(req, res) {
         try {
             const result = await PersonService.deletePerson(req.params.id);
-            return res.status(200).json('successfully deleted');
+            return res.status(200).json('successfull deleted');
         } catch (error) {
             return res.status(400).json(error);
         }
