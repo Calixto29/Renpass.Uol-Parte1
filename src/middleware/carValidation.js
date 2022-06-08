@@ -8,12 +8,13 @@ module.exports = async (req, res, next) => {
 			brand: joi.string().required(),
 			color: joi.string().required(),
 			year: joi.string().required(),
-			accessories: joi.array().unique().min(1).required(),
-			passengersQtd: joi.number().min(1).required(),
-			total: joi.number().required(),
-			limit: joi.number().required(),
-			offset: joi.number().required(),
-			offsets: joi.number().required()
+			accessories: joi.array().min(1).unique().required()
+			.items({description:
+				joi.string()
+				.min(1)
+				.trim()
+				.required()}),
+			passengersQtd: joi.number().min(1).required()
 		});	
 
 	const { error } = await authSchemaCar.validate(req.body, { abortEarly: true})

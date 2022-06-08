@@ -26,55 +26,15 @@ const CarSchema = new mongoose.Schema({
 	accessories:[ {
 		description: {
 			type: String,
-			required: true,
-			unique: true
+			required: true,			
 		},
-        description: {
-			type: String,
-			required: true,
-			unique: true
-		},
-        description: {
-			type: String,
-			required: true,
-			unique: true
-		},
-        description: {
-			type: String,
-			required: true,
-			unique: true
-		},
-        description: {
-			type: String,
-			required: true,
-			unique: true
-		},
+		_id: false,
     }
 ],
 	passengersQtd: {
 		type: Number,
 		required: true
 	},
-    total: {
-        type: number,
-        required: true,
-        unique: false
-    },
-    limit: {
-        type: number,
-        required: true,
-        unique: false
-    },
-    offset: {
-        type: number,
-        required: true,
-        unique: false
-    },
-    offsets: {
-        type: number,
-        required: true,
-        unique: false
-    }
 },
 { timestamps: false, versionKey: false}
 );
