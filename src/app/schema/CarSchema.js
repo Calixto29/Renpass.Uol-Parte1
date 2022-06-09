@@ -1,5 +1,6 @@
 const number = require('@hapi/joi/lib/types/number');
 const string = require('@hapi/joi/lib/types/string');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const mongoose = require ('mongoose');
 
 const CarSchema = new mongoose.Schema({
@@ -39,5 +40,6 @@ const CarSchema = new mongoose.Schema({
 { timestamps: false, versionKey: false}
 );
 
+CarSchema.plugin(mongoosePaginate);
 const Car = mongoose.model('Car', CarSchema);
 module.exports = Car;

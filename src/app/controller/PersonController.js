@@ -1,10 +1,9 @@
-const PersonService = require('../service/PersonService')
-// const retorno = require('../../middleware/returno')
+const PersonService = require('../service/PersonService');
 
 class  PersonController {    
     async create(req, res) {
         try {
-            const result = await PersonService.create(req.body) //requisição e o corpo da req.
+            const result = await PersonService.create(req.body);
             return res.status(201).json(result);
         } catch(error) {
             return res.status(400).json(error);
@@ -12,18 +11,17 @@ class  PersonController {
     }
     async list(req, res) {
         const payload = req.query;
-        // const resultado = retorno(payload);
-        // console.log(resultado)
+
         try {
             const result = await PersonService.list(payload);
             return res.status(200).json(result);
         } catch(error) {
-            return res.status(400).json(error)
+            return res.status(400).json(error.message)
         }
     }
     async listId(req, res) {
         try { 
-            // console.log(req.params.id)
+            
             const result = await PersonService.listId(req.params.id);
             return res.status(200).json(result);        
         } catch(error)    {
@@ -32,7 +30,7 @@ class  PersonController {
     }
     async update(req, res) {
         try {            
-            // console.log(req.params.id)            
+                       
             const result = await PersonService.updatePersonId(
                 req.params.id,
                 req.body
