@@ -1,4 +1,5 @@
 const mongoose = require ('mongoose');
+const bcrypt = require('bcryptjs');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const PersonSchema = new mongoose.Schema({
@@ -22,8 +23,8 @@ const PersonSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
-        //select: false (faz com que o password do usuario não venho junto com os dados da pesquisa)
+        required: true,
+        select: false 
 
     },
     canDrive: {
@@ -33,8 +34,15 @@ const PersonSchema = new mongoose.Schema({
     } 
 });
 
+PersonSchema.pre('save' , async function(next){
+    const hash = await bcrypt.hash(this.password, 10);
+    this.password = hash;
+
+    next();
+});
+
 PersonSchema.plugin(mongoosePaginate);
-const Person = mongoose.model('Person', PersonSchema)
+const Person = mongoose.model('Person', PersonSchema);
 
 
 module.exports = Person;

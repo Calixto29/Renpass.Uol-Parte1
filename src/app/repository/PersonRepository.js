@@ -1,6 +1,7 @@
 // const res = require('express/lib/response');
 const PersonSchema = require('../schema/PersonSchema');
 
+
 class PersonRepository {
     async create(payload) {
         return await PersonSchema.create(payload); 
@@ -25,19 +26,7 @@ class PersonRepository {
             offset: 1,
             customLabels: allPage
         };
-        return PersonSchema.paginate(payload, options);
-        // }
-           
-        // const personPages = await PersonSchema.paginate(payload, options, {});
-        // return res.json(personPages);
-        
-        //     console.error(err);
-        //     return res.status(500).send(err);
-        // } 
-
-        // return await PersonSchema.paginate({}, pages);  
-        // // return await PersonSchema.paginate(options);
-        // return res.json(personPage);
+        return PersonSchema.paginate(payload, options);        
 
     }
     async listId(payload) {
@@ -48,7 +37,9 @@ class PersonRepository {
     }
     async deletePerson(id, body) {
         return PersonSchema.findByIdAndDelete(id, body);
-
+    }
+    async personAuthenticate(email) {        
+        return  PersonSchema.findOne({ email }).select("+password");
     }
     
 }
