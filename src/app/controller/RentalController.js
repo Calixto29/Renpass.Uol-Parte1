@@ -1,19 +1,19 @@
-const PersonService = require('../service/PersonService');
+const RentalService = require('../service/RentalService');
 
-class  PersonController {    
+class  RentalController {    
     async create(req, res) {
         try {
-            const result = await PersonService.create(req.body);
-            return res.status(201).json("Person registered successfully");
+            const result = await RentalService.create(req.body);
+            return res.status(201).json(result);
         } catch(error) {
             return res.status(400).json(error);
         }
     }
-    async list(req, res) {
+    async listRental(req, res) {
         const payload = req.query;
 
         try {
-            const result = await PersonService.list(payload);
+            const result = await RentalService.listRental(payload);
             return res.status(200).json(result);
         } catch(error) {
             return res.status(400).json(error.message)
@@ -22,7 +22,7 @@ class  PersonController {
     async listId(req, res) {
         try { 
             
-            const result = await PersonService.listId(req.params.id);
+            const result = await RentalService.listId(req.params.id);
             return res.status(200).json(result);        
         } catch(error)    {
             return res.status(400).json(error);
@@ -31,7 +31,7 @@ class  PersonController {
     async update(req, res) {
         try {            
                        
-            const result = await PersonService.updatePersonId(
+            const result = await RentalService.update(
                 req.params.id,
                 req.body
             );
@@ -42,7 +42,7 @@ class  PersonController {
     }
     async delete(req, res) {
         try {
-            const result = await PersonService.deletePerson(req.params.id);
+            const result = await RentalService.delete(req.params.id);
             return res.status(200).json('successfull deleted');
         } catch (error) {
             return res.status(400).json(error);
@@ -50,4 +50,4 @@ class  PersonController {
     }
 }
 
-module.exports = new PersonController();
+module.exports = new RentalController();

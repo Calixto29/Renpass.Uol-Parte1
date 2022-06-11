@@ -20,6 +20,7 @@ module.exports = async (req, res, next) => {
 		const reqBody = req.body;
 		
 		const year = reqBody.year;
+		
 
 		if (year < 1950 ) {
 			return res.status(400).json({
@@ -38,6 +39,8 @@ module.exports = async (req, res, next) => {
 
 			})
 		}
+
+
 		
 
 	const { error } = await authSchemaCar.validate(req.body, { abortEarly: true});

@@ -10,9 +10,8 @@ class AuthController {
             const result = await AuthService.personAuthenticate(email, password);
             return res.status(201).json(result);
 
-        } catch (error) {            
-            // console.log(error);
-            return res.status(404).json("error 2");            
+        } catch (error) {                        
+            return res.status(404).json("Invalid email or password");            
         }
     }
 }
