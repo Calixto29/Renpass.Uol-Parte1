@@ -8,7 +8,7 @@ class CarRepository {
         
         const allPage = {
             totalocs: 'total',
-            docs: 'Persons',
+            docs: 'Cars',
             totalPages: 'offsets',
             nextPage: false,
             prevPage: false,

@@ -15,24 +15,26 @@ const RentalSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	address:[ 
-        {
-		cep: {
+	address:[{
+		zipCode: {
 			type: String,
 			required: true,			
 		},
         number : {
             type : String,
             required: true
+			
         },
+		complement: {
+			type: String,
+			required: false
+		},		
         isFilial : {
             type: String,
             required: true,
             enum: [ "true" , "false"]
-        }
-		
-    }
-]
+        }		
+    }]
 },
 
 { timestamps: false, versionKey: false}

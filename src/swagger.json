@@ -1,1 +1,228 @@
-{}
+{
+    "openapi" : "3.0.0",
+    "info": {
+        "title" : "API Renpass.Uol",
+        "description" : "Está é uma API RestFull com objetivo de cadastro de usuários, veículos e locadoras de veículos",
+        "termsOfService" : "",
+        "contact" : {
+            "email" : "fernando@email.com"
+        },
+        "version" : "1.0.0"        
+    },
+    "servers" : [
+        {
+            "url" : "http://localhost:3000/api/v1/",
+            "description": "API Runpass.Uol"
+        }
+    ],
+    "paths" : {
+        "/person/" : {
+            "post" : {
+                "summary" : "Cadastro de usuário",
+                "description" : "Essa rota será responsável por cadastrar um novo usuário",
+                "tags" : ["Person"],
+                "security" : [{"bearerAuth" : []}],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/person"                                 
+                            },
+                            "examples" : {
+                                "person" : {
+                                    "value" : {
+                                        "name" : "Fernando Torres",
+                                        "cpf" : "000.000.000-00",
+                                        "birthDay" : "29/06/1987",
+                                        "email" : "fernando@email.com",
+                                        "password" : "123456",
+                                        "canDrive" : "yes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "201" : {
+                        "description" : "User registered successfully",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/person"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/person" : {
+            "get" : {
+                "description" : "Busca todos os usuários cadastrados",
+                "summary" : "Busca todos os usuários cadastrados",
+                "tags" : ["Person"],
+                "responses" : {
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/person"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        },
+        "/person/{listId}" : {
+            "get" : {
+                "description" : "Busca um usuário cadastrado pelo ID",
+                "summary" : "Busca um usuário cadastrado pelo ID",
+                "tags" : ["Person"],
+                "parameters" :  [
+                    {
+                        "name" : "listId",
+                        "in" : "path",
+                        "description" : "Id de usuário cadastrado para busca",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "Usuário encontrado com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/person"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        },
+        "/person/{update}" : {
+            "put" : {                
+                "description" : "Atualiza os dados de um usuário cadastrado pelo ID",
+                "summary" : "Atualiza os dados de um usuário cadastrado pelo ID",
+                "tags" : ["Person"],
+                "security" : [{ "bearerAuth" : [] }],
+                "parameters" :  [
+                    {
+                        "name" : "update",
+                        "in" : "path",
+                        "description" : "Id de usuário cadastrado para busca",
+                        "required" : true
+                    }
+                ],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/person"                                 
+                            },
+                            "examples" : {
+                                "person" : {
+                                    "value" : {
+                                        "name" : "Fernando Torres",
+                                        "cpf" : "000.000.000-00",
+                                        "birthDay" : "29/06/1987",
+                                        "email" : "fernando@email.com",
+                                        "password" : "123456",
+                                        "canDrive" : "yes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Usuário encontrado com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/person"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/person/{delete}" : {
+            "delete" : {
+                "description" : "Exclui os dados de um usuário cadastrado pelo ID",
+                "summary" : "Exclui os dados de um usuário cadastrado pelo ID",
+                "tags" : ["Person"],
+                "parameters" :  [
+                    {
+                        "name" : "delete",
+                        "in" : "path",
+                        "description" : "Id de usuário cadastrado para busca",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "Usuário encontrado com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/person"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        }        
+    },
+    "components" : {
+        "schemas" : {
+            "person" : {
+                "type" : "object",
+                "properties" : {
+                    "name" : {
+                        "type" : "string"
+                    },
+                    "cpf" : {
+                        "type" : "string"
+                    },
+                    "birthDay" : {
+                        "type" : "string"
+                    },
+                    "email" : {
+                        "type" : "string"
+                    },
+                    "password" : {
+                        "type" : "string"
+                    },
+                    "candrive" : {
+                        "type" : "String"
+                    }
+                }
+                
+            }
+        },
+        "securitySchemas" : {
+            "bearerAuth" : {
+                "type" : "http",
+                "scheme" : "bearer",
+                "beareFormat" : "JWT"
+            }
+        }
+    }
+    
+}

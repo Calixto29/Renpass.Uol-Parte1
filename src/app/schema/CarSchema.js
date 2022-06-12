@@ -24,20 +24,21 @@ const CarSchema = new mongoose.Schema({
 		type: Date,
 		required: true
 	},
-	accessories:[ {
+	accessories:[{
 		description: {
 			type: String,
 			required: true,			
 		},
 		// _id: false,
-    }
-],
+    }],
 	passengersQtd: {
 		type: Number,
 		required: true
 	},
 },
+
 { timestamps: false, versionKey: false}
+
 );
 
 CarSchema.plugin(mongoosePaginate);

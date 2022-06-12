@@ -4,7 +4,7 @@ class  PersonController {
     async create(req, res) {
         try {
             const result = await PersonService.create(req.body);
-            return res.status(201).json("Person registered successfully");
+            return res.status(201).json("User registered successfully");
         } catch(error) {
             return res.status(400).json(error);
         }
