@@ -187,30 +187,266 @@
                     }
                 }
             }            
+        },
+        "/car/" : {
+            "post" : {
+                "summary" : "Cadastro de veículo",
+                "description" : "Essa rota será responsável por cadastrar um novo veículo",
+                "tags" : ["Car"],
+                "security" : [{"bearerAuth" : []}],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/car"                                 
+                            },
+                            "examples" : {
+                                "car" : {
+                                    "value" : {
+                                        "model" : "S10 2.8",
+                                        "type" : "Sedan",
+                                        "brand" : "GM",
+                                        "color" : "branco",
+                                        "year" : "2021",                                        
+                                        "accessories": [
+                                            {
+                                              "description": "Ar-condicionado"                                              
+                                            },
+                                            {
+                                              "description": "Dir. Hidráulica"                                              
+                                            },
+                                            {
+                                              "description": "Cabine Dupla"                                              
+                                            },
+                                            {
+                                              "description": "Tração 4x4"                                              
+                                            },
+                                            {
+                                              "description": "4 portas"                                              
+                                            },
+                                            {
+                                              "description": "Diesel"                                              
+                                            },
+                                            {
+                                              "description": "Air bag"                                              
+                                            },
+                                            {
+                                              "description": "ABS"                                              
+                                            }
+                                          ],
+                                        "passengersQtd": 5                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "201" : {
+                        "description" : "vehicle registered successfully",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/car"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/car" : {
+            "get" : {
+                "description" : "Busca todos os veículos cadastrados",
+                "summary" : "Busca todos os veículos cadastrados",
+                "tags" : ["Car"],
+                "responses" : {
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/car"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/car/{listCarId}" : {
+            "get" : {
+                "description" : "Busca um veículo cadastrado pelo ID",
+                "summary" : "Busca um veículo cadastrado pelo ID",
+                "tags" : ["Car"],
+                "parameters" :  [
+                    {
+                        "name" : "listCarId",
+                        "in" : "path",
+                        "description" : "Id de veículo cadastrado para busca",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "Veículo encontrado com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/car"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        },
+        "/car/{putCar}" : {
+            "put" : {                
+                "description" : "Atualiza os dados de um veículo cadastrado pelo ID",
+                "summary" : "Atualiza os dados de um veículo cadastrado pelo ID",
+                "tags" : ["Car"],
+                "security" : [{ "bearerAuth" : [] }],
+                "parameters" :  [
+                    {
+                        "name" : "putCar",
+                        "in" : "path",
+                        "description" : "Id de veículo cadastrado para busca",
+                        "required" : true
+                    }
+                ],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/car"                                 
+                            },
+                            "examples" : {
+                                "car" : {
+                                    "value" : {
+                                        "model" : "S10 2.8",
+                                        "type" : "Sedan",
+                                        "brand" : "GM",
+                                        "color" : "branco",
+                                        "year" : "2021",                                        
+                                        "accessories": [
+                                            {
+                                              "description": "Ar-condicionado"                                              
+                                            },
+                                            {
+                                              "description": "Dir. Hidráulica"                                              
+                                            },
+                                            {
+                                              "description": "Cabine Dupla"                                              
+                                            },
+                                            {
+                                              "description": "Tração 4x4"                                              
+                                            },
+                                            {
+                                              "description": "4 portas"                                              
+                                            },
+                                            {
+                                              "description": "Diesel"                                              
+                                            },
+                                            {
+                                              "description": "Air bag"                                              
+                                            },
+                                            {
+                                              "description": "ABS"                                              
+                                            }
+                                          ],
+                                        "passengersQtd": 5                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Veículo atualizado com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/car"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/car/{deleteCar}" : {
+            "delete" : {
+                "description" : "Exclui os dados de um veículo cadastrado pelo ID",
+                "summary" : "Exclui os dados de um veículo cadastrado pelo ID",
+                "tags" : ["Car"],
+                "parameters" :  [
+                    {
+                        "name" : "deleteCar",
+                        "in" : "path",
+                        "description" : "Id de veículo cadastrado para busca e exclusão dos dados",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "Veículo excluído com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/car"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
         }        
     },
     "components" : {
         "schemas" : {
-            "person" : {
+            "car" : {
                 "type" : "object",
                 "properties" : {
-                    "name" : {
-                        "type" : "string"
+                    "model" : {
+                        "type" : "String",
+                        "requered" : true
                     },
-                    "cpf" : {
-                        "type" : "string"
+                    "type" : {
+                        "type" : "String",
+                        "requered" : true
                     },
-                    "birthDay" : {
-                        "type" : "string"
+                    "brand" : {
+                        "type" : "String",
+                        "requered" : true
                     },
-                    "email" : {
-                        "type" : "string"
+                    "color" : {
+                        "type" : "String",
+                        "requered" : true
                     },
-                    "password" : {
-                        "type" : "string"
-                    },
-                    "candrive" : {
-                        "type" : "String"
+                    "year" : {
+                        "type" : "Date",
+                        "requered" : true
+                    },                    
+                    "accessories" :[{
+                        "description" : {
+                            "type" : "String",
+                            "required" : true			
+                        }
+                        
+                    }],
+                    "passengersQtd" : {
+                        "type" : "Number",
+                        "required" : true
                     }
                 }
                 
@@ -222,7 +458,6 @@
                 "scheme" : "bearer",
                 "beareFormat" : "JWT"
             }
-        }
+        }        
     }
-    
 }
