@@ -16,7 +16,7 @@
         }
     ],
     "paths" : {
-        "/person/" : {
+        "/person" : {
             "post" : {
                 "summary" : "Cadastro de usuário",
                 "description" : "Essa rota será responsável por cadastrar um novo usuário",
@@ -61,7 +61,7 @@
                 }
             }
         },
-        "/person" : {
+        "/person/" : {
             "get" : {
                 "description" : "Busca todos os usuários cadastrados",
                 "summary" : "Busca todos os usuários cadastrados",
@@ -147,7 +147,7 @@
                 },
                 "responses" : {
                     "200" : {
-                        "description" : "Usuário encontrado com sucesso!",
+                        "description" : "Dados de usuário atualizados com sucesso!",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -169,13 +169,13 @@
                     {
                         "name" : "delete",
                         "in" : "path",
-                        "description" : "Id de usuário cadastrado para busca",
+                        "description" : "Id de usuário cadastrado para busca e exclusão dos dados",
                         "required" : true
                     }
                 ],
                 "responses" : {
                     "200" : {
-                        "description" : "Usuário encontrado com sucesso!",
+                        "description" : "Dados de usuário excluidos com sucesso!",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -188,7 +188,7 @@
                 }
             }            
         },
-        "/car/" : {
+        "/car" : {
             "post" : {
                 "summary" : "Cadastro de veículo",
                 "description" : "Essa rota será responsável por cadastrar um novo veículo",
@@ -246,7 +246,7 @@
                         "description" : "Bad Request"
                     },
                     "201" : {
-                        "description" : "vehicle registered successfully",
+                        "description" : "Veículo registrado com sucesso!",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -259,7 +259,7 @@
                 }
             }
         },
-        "/car" : {
+        "/car/" : {
             "get" : {
                 "description" : "Busca todos os veículos cadastrados",
                 "summary" : "Busca todos os veículos cadastrados",
@@ -398,12 +398,195 @@
                 ],
                 "responses" : {
                     "200" : {
-                        "description" : "Veículo excluído com sucesso!",
+                        "description" : "Dados do veículo excluído com sucesso!",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
                                     "type" : "object",                                    
                                     "$ref" : "#/components/schemas/car"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        },
+        "/rental" : {
+            "post" : {
+                "summary" : "Cadastro de locadora de veículos",
+                "description" : "Essa rota será responsável por cadastrar uma nova locadora de veículos usuário",
+                "tags" : ["Rental"],
+                "security" : [{"bearerAuth" : []}],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/rental"                                 
+                            },
+                            "examples" : {
+                                "person" : {
+                                    "value" : {
+                                        "name" : "Localiza Rent a Car",
+                                        "cnpj": "16.670.085/0001-55",
+                                        "activities": "Aluguel de Carros E Gestão de Frotas",
+                                        "address": [{
+                                            "zipCode": "96200-200",
+                                            "street": "Rua General Canabarro",
+                                            "complement": "Muro A",
+                                            "district": "Centro",
+                                            "number":"1234",
+                                            "city": "Rio Grande",
+                                            "state": "RS"
+                                            }]      
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "201" : {
+                        "description" : "Locadora cadastrada com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/rental"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rental/" : {
+            "get" : {
+                "description" : "Busca todos as locadoras de veículos cadastradas",
+                "summary" : "Busca todos as locadoras de veículos cadastradas",
+                "tags" : ["Rental"],
+                "responses" : {
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/rental"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rental/{listId}" : {
+            "get" : {
+                "description" : "Busca uma locadora de veículo cadastrada pelo ID",
+                "summary" : "Busca uma locadora de veículo cadastrada pelo ID",
+                "tags" : ["Rental"],
+                "parameters" :  [
+                    {
+                        "name" : "listId",
+                        "in" : "path",
+                        "description" : "Id de locadora de veículo cadastrada para busca",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "locadora de veículo encontrada com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/rental"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        },
+        "/rental/{update}" : {
+            "put" : {                
+                "description" : "Atualiza os dados de uma locadora de veículos cadastrada pelo ID",
+                "summary" : "Atualiza os dados de uma locadora de veículos cadastrada pelo ID",
+                "tags" : ["Rental"],
+                "security" : [{ "bearerAuth" : [] }],
+                "parameters" :  [
+                    {
+                        "name" : "update",
+                        "in" : "path",
+                        "description" : "Id de locadora cadastrada para busca",
+                        "required" : true
+                    }
+                ],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/rental"                                 
+                            },
+                            "examples" : {
+                                "rental" : {
+                                    "value" : {
+                                        "name" : "Localiza Rent a Car",
+                                        "cnpj": "16.670.085/0001-55",
+                                        "activities": "Aluguel de Carros E Gestão de Frotas",
+                                        "address": [{
+                                            "zipCode": "96200-200",
+                                            "street": "Rua General Canabarro",
+                                            "complement": "Muro A",
+                                            "district": "Centro",
+                                            "number":"1234",
+                                            "city": "Rio Grande",
+                                            "state": "RS"
+                                            }]      
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Dados de locadora atualizados com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/rental"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rental/{delete}" : {
+            "delete" : {
+                "description" : "Exclui os dados de uma locadora veículos cadastrada pelo ID",
+                "summary" : "Exclui os dados de uma locadora veículos cadastrada pelo ID",
+                "tags" : ["Rental"],
+                "parameters" :  [
+                    {
+                        "name" : "delete",
+                        "in" : "path",
+                        "description" : "Id de locadora de veículos cadastrado para busca e exclusão dos dados",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "Dados da locadora de veículos excluídos com sucesso!",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/rental"                                    
                                 }
                             }
                         }

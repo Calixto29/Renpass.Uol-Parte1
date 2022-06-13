@@ -20,20 +20,31 @@ const RentalSchema = new mongoose.Schema({
 			type: String,
 			required: true,			
 		},
-        number : {
+		street : {
+			type: String,
+			required: true
+		},
+        complement : {
             type : String,
             required: true
 			
         },
-		complement: {
+		district: {
 			type: String,
 			required: false
-		},		
-        isFilial : {
-            type: String,
-            required: true,
-            enum: [ "true" , "false"]
-        }		
+		},
+		number: {
+			type: String,
+			required: true
+		},
+		city: {
+			type: String,
+			required: true
+		},
+		state: {
+			type: String,
+			required: true
+		},
     }]
 },
 

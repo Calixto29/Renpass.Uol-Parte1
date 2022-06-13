@@ -1,9 +1,10 @@
 const RentalRepository = require('../repository/RentalRespository');
 
+
 class RentalService{
 
-    async create(payload) { 
-        const result = await RentalRepository.create(payload);
+    async create(payload) {         
+        const result = await RentalRepository.create(payload, );
         return result; 
     }
     async listRental(payload) {
