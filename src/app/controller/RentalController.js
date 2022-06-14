@@ -6,7 +6,7 @@ class  RentalController {
             const result = await RentalService.create(req.body);
             return res.status(201).json(result);
         } catch(error) {
-            return res.status(400).json(error);
+            return res.status(400).json(error.message);
         }
     }
     async listRental(req, res) {

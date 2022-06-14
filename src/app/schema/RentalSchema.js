@@ -22,11 +22,11 @@ const RentalSchema = new mongoose.Schema({
 		},
 		street : {
 			type: String,
-			required: true
+			required: false
 		},
         complement : {
             type : String,
-            required: true
+            required: false
 			
         },
 		district: {
@@ -35,17 +35,22 @@ const RentalSchema = new mongoose.Schema({
 		},
 		number: {
 			type: String,
-			required: true
+			required: false
 		},
 		city: {
 			type: String,
-			required: true
+			required: false
 		},
 		state: {
 			type: String,
-			required: true
+			required: false
 		},
-    }]
+		isFilial: {
+			type: Boolean,
+			required: true
+		}
+    }],
+
 },
 
 { timestamps: false, versionKey: false}

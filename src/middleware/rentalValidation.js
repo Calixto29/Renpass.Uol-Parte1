@@ -1,17 +1,20 @@
 const joi = require("@hapi/joi");
+const string = require("@hapi/joi/lib/types/string");
 const moment = require("moment");
 const Rental = require("../app/schema/RentalSchema");
+
 
 const authSchemaRental = joi.object({
 	name: joi.string().min(6).required(),
 	cnpj: joi.string().required(),
     activities: joi.string().required,
-    address: joi.array().required()
-	.items({
-    zipCode: joi.string().required(),
-    number: joi.string().required,
-    isFilial: joi.string().valid().required("true" , "false")
-}),
+    address: joi.array().items(joi.object({
+		zipCode: joi.string(),
+		number: joi.string(),
+		city: joi.string(),
+		state: joi.string(),
+		isFilial: joi.boolean().required("true" , "false")
+})),
 	
 });
 
