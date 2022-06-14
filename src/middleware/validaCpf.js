@@ -1,7 +1,7 @@
 function validarCpf(CPF) {
     var soma = 0;
     var resto;
-    var CPF = CPF;
+    var CPF = CPF.replace(/[^\d]+/g, '')
 
     if(CPF == '00000000000') return false;
     for(i=1; i<=9; i++) soma = soma + parseInt(CPF.substring(i-1, i)) * (11 - i);
