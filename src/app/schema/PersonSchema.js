@@ -9,7 +9,7 @@ const PersonSchema = new mongoose.Schema({
     },
     cpf: {
          type: String,
-         required: true,
+         required: false,
          unique: true
     },
     birthDay: {
@@ -18,18 +18,18 @@ const PersonSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: false,
         unique: true
     },
     password: {
         type: String,
-        required: true,
+        required: false,
         select: false 
 
     },
     canDrive: {
         type: String,
-        required: true,
+        required: false,
         enum: ["yes", "no"]
     } 
 });

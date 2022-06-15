@@ -11,9 +11,9 @@ class AuthService {
 
         if(!person) throw new Error('Email not found!');
 
-        const personValidation = await bcrypt.compare(password, person.password)
+        const personValidation = await bcrypt.compare(password, person.password);
         if (!personValidation) {
-            throw new Error ("Password notfound") 
+            throw new Error ("Password notfound"); 
         } 
   
         person.password = undefined;

@@ -4,7 +4,7 @@ class  PersonController {
     async create(req, res) {
         try {
             const result = await PersonService.create(req.body);
-            return res.status(201).json("User registered successfully");
+            return res.status(201).json(result);
         } catch(error) {
             return res.status(400).json(error);
         }
@@ -16,7 +16,7 @@ class  PersonController {
             const result = await PersonService.list(payload);
             return res.status(200).json(result);
         } catch(error) {
-            return res.status(400).json(error.message)
+            return res.status(400).json(error.message);
         }
     }
     async listId(req, res) {
@@ -43,7 +43,7 @@ class  PersonController {
     async delete(req, res) {
         try {
             const result = await PersonService.deletePerson(req.params.id);
-            return res.status(200).json('successfull deleted');
+            return res.status(204).json();
         } catch (error) {
             return res.status(400).json(error);
         }

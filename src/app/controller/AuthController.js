@@ -1,4 +1,3 @@
-// const bcrypt = require('bcryptjs')
 const AuthService = require('../service/AuthService');
 
 class AuthController {

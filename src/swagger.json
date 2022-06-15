@@ -67,6 +67,9 @@
                 "summary" : "Busca todos os usuários cadastrados",
                 "tags" : ["Person"],
                 "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },                    
                     "200" : {
                         "description" : "OK",
                         "content" : {
@@ -80,7 +83,6 @@
                     }
                 }
             }
-
         },
         "/person/{listId}" : {
             "get" : {
@@ -95,9 +97,12 @@
                         "required" : true
                     }
                 ],
+                "400": {
+                    "description" : "Bad Request"
+                },
                 "responses" : {
                     "200" : {
-                        "description" : "Usuário encontrado com sucesso!",
+                        "description" : "OK",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -146,8 +151,11 @@
                     }
                 },
                 "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
                     "200" : {
-                        "description" : "Dados de usuário atualizados com sucesso!",
+                        "description" : "OK",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -174,8 +182,11 @@
                     }
                 ],
                 "responses" : {
-                    "200" : {
-                        "description" : "Dados de usuário excluidos com sucesso!",
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "204" : {
+                        "description" : " ",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -246,7 +257,7 @@
                         "description" : "Bad Request"
                     },
                     "201" : {
-                        "description" : "Veículo registrado com sucesso!",
+                        "description" : "OK",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -265,6 +276,9 @@
                 "summary" : "Busca todos os veículos cadastrados",
                 "tags" : ["Car"],
                 "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
                     "200" : {
                         "description" : "OK",
                         "content" : {
@@ -293,8 +307,11 @@
                     }
                 ],
                 "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
                     "200" : {
-                        "description" : "Veículo encontrado com sucesso!",
+                        "description" : "OK",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -369,8 +386,11 @@
                     }
                 },
                 "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
                     "200" : {
-                        "description" : "Veículo atualizado com sucesso!",
+                        "description" : "OK",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -397,8 +417,11 @@
                     }
                 ],
                 "responses" : {
-                    "200" : {
-                        "description" : "Dados do veículo excluído com sucesso!",
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "204" : {
+                        "description" : " ",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -436,7 +459,8 @@
                                             "district": "Centro",
                                             "number":"1234",
                                             "city": "Rio Grande",
-                                            "state": "RS"
+                                            "state": "RS",
+                                            "isFilial" : "true"
                                             }]      
                                     }
                                 }
@@ -449,7 +473,7 @@
                         "description" : "Bad Request"
                     },
                     "201" : {
-                        "description" : "Locadora cadastrada com sucesso!",
+                        "description" : "OK",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -468,6 +492,9 @@
                 "summary" : "Busca todos as locadoras de veículos cadastradas",
                 "tags" : ["Rental"],
                 "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
                     "200" : {
                         "description" : "OK",
                         "content" : {
@@ -496,8 +523,11 @@
                     }
                 ],
                 "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
                     "200" : {
-                        "description" : "locadora de veículo encontrada com sucesso!",
+                        "description" : "OK",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -543,8 +573,9 @@
                                             "district": "Centro",
                                             "number":"1234",
                                             "city": "Rio Grande",
-                                            "state": "RS"
-                                            }]      
+                                            "state": "RS",
+                                            "isFilial" : "false"
+                                        }]      
                                     }
                                 }
                             }
@@ -552,8 +583,11 @@
                     }
                 },
                 "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
                     "200" : {
-                        "description" : "Dados de locadora atualizados com sucesso!",
+                        "description" : "OK",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -580,8 +614,11 @@
                     }
                 ],
                 "responses" : {
-                    "200" : {
-                        "description" : "Dados da locadora de veículos excluídos com sucesso!",
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "204" : {
+                        "description" : " ",
                         "content" : {
                             "application/json" : {
                                 "schema" : {
@@ -633,6 +670,86 @@
                     }
                 }
                 
+            },
+            "person" : {
+                "type" : "object",
+                "properties" : {
+                    "name" : {
+                        "type" : "String",
+                        "requered" : true
+                    },
+                    "cpf" : {
+                        "type" : "String",
+                        "requered" : true
+                    },
+                    "birthDay" : {
+                        "type" : "String",
+                        "requered" : true
+                    },
+                    "email" : {
+                        "type" : "String",
+                        "requered" : true
+                    },
+                    "password" : {
+                        "type" : "String",
+                        "requered" : true
+                    },                    
+                    "canDrive" :{                        
+                        "type" : "String",
+                        "required" : true
+                    }			
+                 }                
+            },
+            "rental" : {
+                "type" : "object",
+                "properties" : {
+                    "name" : {
+                        "type" : "String",
+                        "requered" : true
+                    },
+                    "cnpj" : {
+                        "type" : "String",
+                        "requered" : true
+                    },
+                    "activities" : {
+                        "type" : "String",
+                        "requered" : true                    
+                    },                    
+                    "address" :[{
+                        "zipCode" : {
+                            "type" : "String",
+                            "required" : false			
+                        },
+                        "street" : {
+                            "type" : "String",
+                            "required" : false			
+                        },
+                        "complement" : {
+                            "type" : "String",
+                            "required" : false			
+                        },
+                        "district" : {
+                            "type" : "String",
+                            "required" : false			
+                        },
+                        "number" : {
+                            "type" : "String",
+                            "required" : false			
+                        },
+                        "city" : {
+                            "type" : "String",
+                            "required" : false			
+                        }, 
+                        "state" : {
+                            "type" : "String",
+                            "required" : false			
+                        },
+                        "isFilial" : {
+                            "type" : "boolean",
+                            "required" : true			
+                        }                       
+                    }]                    
+                }                
             }
         },
         "securitySchemas" : {

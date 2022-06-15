@@ -1,4 +1,3 @@
-// const { response } = require('../app');
 const axios = require('axios').default;
 
 class GetCep {
@@ -11,9 +10,9 @@ class GetCep {
             district: response.data.bairro,
             city: response.data.localidade,
             state: response.data.uf        
-        }   
-    }    
-}
+        };   
+    };    
+};
 
 
 module.exports = GetCep

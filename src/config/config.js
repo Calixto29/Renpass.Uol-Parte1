@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 
 dotenv.config({
     path: process.env.NODE_ENV,
-})
+});
 
 module.exports = {
     database: {
@@ -12,4 +12,4 @@ module.exports = {
         password: process.env.DB_PASS,
         collection: process.env.DB_COLLECTION,
     }
-}
+};

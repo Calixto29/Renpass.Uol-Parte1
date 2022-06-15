@@ -1,7 +1,7 @@
 const joi = require("@hapi/joi");
 const moment = require("moment");
 const Person = require("../app/schema/PersonSchema");
-const validaCpf = require('../middleware/validaCpf');
+const validarCpf = require('../middleware/validaCpf');
 
 const authSchemaPerson = joi.object({
 	name: joi.string().min(6).required(),
@@ -29,22 +29,22 @@ module.exports = async (req, res, next) => {
 			return res.status(400).json({ message: "age must be over 18" });			
 		}
 		
-		if (!validaCpf(reqBody.cpf)) {
+		if (!validarCpf(reqBody.cpf)) {
 			return res.status(400).json({ error: "CPF is invalid" })
-		}		
+		};		
 
 		if (req.method == "POST") {
 			await authSchemaPerson.validateAsync({
 				...reqBody, birthDay
 
-			})
-		}						
+			});
+		};						
 
 
-	const { error } = await authSchemaPerson.validate(req.body, { abortEarly: true})
+	const { error } = await authSchemaPerson.validate(req.body, { abortEarly: true});
 	if (error) throw error
-	return next()
-	} catch (error) {
-		return res.status(400).json({Error: error})
-	}
-}
+	return next();
+	} catch (error) {		
+		return res.status(400).json({Error: error});
+	};
+};

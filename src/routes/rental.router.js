@@ -1,5 +1,4 @@
 const RentalController = require('../app/controller/RentalController');
-const rentalValidation = require('../middleware/rentalValidation');
 
 module.exports = (server, routes, prefix ='/api/v1/rental') => {
     routes.post('/', RentalController.create);
