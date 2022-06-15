@@ -37,7 +37,7 @@ swagger-ui-express : 4.4.0
 [API-Documentation](#API-Documentation)
 
 ## Descrição
-Está é uma API RestFull com objetivo de cadastro de usuários, veículos e locadoras de veículos
+Está é uma API RestFull com funções de cadastro de usuários, veículos e locadoras de veículos
 
 ## Funcionalidades - Car
 

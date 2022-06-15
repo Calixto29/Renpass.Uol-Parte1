@@ -1,4 +1,4 @@
-function validarCnpj (cnpj) {
+function validaCnpj (cnpj) {
     var b = [ 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 ]
 
     var c = String(cnpj).replace(/[^\d]/g, '');
@@ -21,4 +21,4 @@ function validarCnpj (cnpj) {
     return true;
 };
 
-module.exports = validarCnpj;
+module.exports = validaCnpj;

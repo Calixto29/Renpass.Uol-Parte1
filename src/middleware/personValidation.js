@@ -8,13 +8,13 @@ const authSchemaPerson = joi.object({
 	cpf: joi.string().required().regex(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/),
 	birthDay: joi.string().required(),
 	email: joi.string().email().lowercase().required(),
-	password: joi.string().min(6).required(),
+	password: joi.string().min(6).required(),	
 	canDrive: joi.string().valid().required("yes" , "no")
 });
 
 module.exports = async (req, res, next) => {
 	try {
-		const reqBody = req.body;
+		const reqBody = req.body;		
 
 		const { email } = req.body;	
 		
@@ -30,8 +30,8 @@ module.exports = async (req, res, next) => {
 		}
 		
 		if (!validarCpf(reqBody.cpf)) {
-			return res.status(400).json({ error: "CPF is invalid" })
-		};		
+			return res.status(400).json({ error: "CPF is invalid" });
+		};	
 
 		if (req.method == "POST") {
 			await authSchemaPerson.validateAsync({

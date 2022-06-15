@@ -1,13 +1,8 @@
-class IdNotFound extends Error {
-	constructor() {
-		super();
-		this.name = "IdNotFound";
-		this.status = 400;
-		this.message = [
-			{
-				message: this.name, 
-				details: [{	message: "This id was not found"}]}];
-	}
+function validaId(id)
+{
+	let exemplo=false;
+	if(id.length==24) exemplo= /^[0-9a-fA-F]{24}$/.test(id);
+	return exemplo;
 }
 
-module.exports = IdNotFound;
+module.export = validaId

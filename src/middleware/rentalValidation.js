@@ -1,5 +1,5 @@
 const joi = require("@hapi/joi");
-const validarCnpj = require("../middleware/validaCnpj");
+const validaCnpj = require("../middleware/validaCnpj");
 
 const authSchemaRental = joi.object({
 	name: joi.string().required(),
@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
 	try {
 		const reqBody = req.body;	
 
-		if (!validarCnpj (reqBody.cnpj)) {
+		if (!validaCnpj (reqBody.cnpj)) {			
 			return res.status(400).json({ error: "CNPJ is invalid" });
 		};	
 
