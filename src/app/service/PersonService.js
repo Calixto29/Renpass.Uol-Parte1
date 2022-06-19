@@ -13,8 +13,7 @@ class PersonService{
         const result = await PersonRepository.listId(payload);
         return result;
     }
-    async updatePersonId(id, body) {
-        
+    async updatePersonId(id, body) {        
         const result = await PersonRepository.updatePersonId(id, body);
         return result;
     }
