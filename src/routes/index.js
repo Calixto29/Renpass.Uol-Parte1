@@ -3,7 +3,7 @@ const car = require('./car.router');
 const person = require('./person.router');
 const personAuthenticate = require('./auth.router');
 const rental = require('./rental.router');
-const document = require('./doc.route');
+const document = require('./doc.router');
 const reserve = require('./reserve.router');
 const fleet = require('./fleet.router')
 

@@ -1,8 +1,8 @@
 const axios = require('axios').default;
 
 class GetCep {
-    static async buscaCep() {    
-        const response = await axios.get(`https://viacep.com.br/ws/96203230/json`);        
+    static async buscaCep(cep) {    
+        const response = await axios.get(`https://viacep.com.br/ws/${cep}/json`);        
         return {
             zipCode: response.data.cep,
             street: response.data.lagradouro, 
