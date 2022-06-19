@@ -1,14 +1,14 @@
-const CarSchema = require('../schema/CarSchema'); 
-class CarRepository {
+const FleetSchema = require('../schema/FleetSchema'); 
+class FleetRepository {
     async create(payload) {
-        return await CarSchema.create(payload); 
+        return await FleetSchema.create(payload); 
     }
-    async listCar(payload) {        
+    async listFleet(payload) {        
         const {page, perPage} = payload;        
         
         const allPage = {
             totalocs: 'total',
-            docs: 'Cars',
+            docs: 'Fleet',
             totalPages: 'offsets',
             nextPage: false,
             prevPage: false,
@@ -23,18 +23,18 @@ class CarRepository {
             offset: 0,
             customLabels: allPage
         };
-        return CarSchema.paginate(payload, options);
+        return FleetSchema.paginate(payload, options);
     }
-    async listCarId(payload) {
-        return await CarSchema.findById(payload);
+    async listFleetId(payload) {
+        return await FleetSchema.findById(payload);
     }
-    async putCar(id, body) {
-        return await CarSchema.findByIdAndUpdate(id, body);
+    async putFleet(id, body) {
+        return await FleetSchema.findByIdAndUpdate(id, body);
     }
-    async deleteCar(id, body) {
-        return await CarSchema.findByIdAndDelete(id, body);
+    async deleteFleet(id, body) {
+        return await FleetSchema.findByIdAndDelete(id, body);
         
     }
 }
 
-module.exports = new CarRepository();
+module.exports = new FleetRepository();

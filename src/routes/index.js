@@ -5,6 +5,7 @@ const personAuthenticate = require('./auth.router');
 const rental = require('./rental.router');
 const document = require('./doc.route');
 const reserve = require('./reserve.router');
+const fleet = require('./fleet.router')
 
 
 module.exports = (server) => {
@@ -37,6 +38,11 @@ module.exports = (server) => {
         reserve(server, new Router());
         next(); 
     });
+
+    server.use((req, res, next) => {
+        fleet(server, new Router());
+        next(); 
+    });        
         
         
 };

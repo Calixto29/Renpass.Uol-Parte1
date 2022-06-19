@@ -22,7 +22,7 @@ class RentalRepository {
         const options = {
             page: parseInt(page, 10) || 5,
             limit: parseInt(perPage, 10) || 10,
-            offset: 1,
+            offset: 0,
             customLabels: allPage
         };        
         return RentalSchema.paginate(payload, options);        
