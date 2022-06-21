@@ -630,6 +630,190 @@
                     }
                 }
             }            
+        },
+        "/reserve" : {  
+            "post" : {
+                "summary" : "Cadastro de reserva de veículos",
+                "description" : "Essa rota será responsável por cadastrar uma reserva de veículos",
+                "tags" : ["Reserve"],
+                "security" : [{"bearerAuth" : []}],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/reserve"                                 
+                            },
+                            "examples" : {
+                                "reserve" : {
+                                    "value" : {
+                                        "id_user": "b149e5bda4f24123g34396a07fd3098",
+                                        "data_start": "20/11/2021",
+                                        "data_end": "30/11/2021",
+                                        "id_car": "b149e5bda4f24e25a12d396a45645398",
+                                        "id_rental": "b149e5bda345232e25a12d396a07fd3098",
+                                        "final_value": "500,00"
+                                              
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "201" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/reserve"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reserve/" : {
+            "get" : {
+                "description" : "Busca todos as reservas de veículos cadastradas",
+                "summary" : "Busca todos as reservas de veículos cadastradas",
+                "tags" : ["Reserve"],
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/reserve"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reserve/{listId}" : {
+            "get" : {
+                "description" : "Busca uma reserva de veículo cadastrada pelo ID",
+                "summary" : "Busca uma reserva de veículo cadastrada pelo ID",
+                "tags" : ["Reserve"],
+                "parameters" :  [
+                    {
+                        "name" : "listId",
+                        "in" : "path",
+                        "description" : "Id de reserva de veículo cadastrada para busca",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/reserve"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        },
+        "/reserve/{updateReserveId}" : {
+            "put" : {                
+                "description" : "Atualiza os dados de uma reserva de veículos cadastrada pelo ID",
+                "summary" : "Atualiza os dados de uma reserva de veículos cadastrada pelo ID",
+                "tags" : ["Reserve"],
+                "security" : [{ "bearerAuth" : [] }],
+                "parameters" :  [
+                    {
+                        "name" : "updateReserveId",
+                        "in" : "path",
+                        "description" : "Id de reserva cadastrada para busca",
+                        "required" : true
+                    }
+                ],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/reserve"                                 
+                            },
+                            "examples" : {
+                                "reserve" : {
+                                    "value" : {
+                                        "id_user": "b149e5bda4f24123g34396a07fd3098",
+                                        "data_start": "20/11/2021",
+                                        "data_end": "30/11/2021",
+                                        "id_car": "b149e5bda4f24e25a12d396a45645398",
+                                        "id_rental": "b149e5bda345232e25a12d396a07fd3098",
+                                        "final_value": "500,00"                                           
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/reserve"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reserve/{deleteReserve}" : {
+            "delete" : {
+                "description" : "Exclui os dados de uma reserva veículos cadastrada pelo ID",
+                "summary" : "Exclui os dados de uma reserva veículos cadastrada pelo ID",
+                "tags" : ["Reserve"],
+                "parameters" :  [
+                    {
+                        "name" : "deleteReserve",
+                        "in" : "path",
+                        "description" : "Id de reserva de veículos cadastrado para busca e exclusão dos dados",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "204" : {
+                        "description" : " ",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/reserve"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
         }        
     },
     "components" : {
@@ -749,6 +933,60 @@
                             "required" : true			
                         }                       
                     }]                    
+                }                
+            },
+            "reserve" : {
+                "type" : "object",
+                "properties" : {
+                    "id_user" : {
+                        "type" : "String",
+                        "requered" : true
+                    },
+                    "data_start" : {
+                        "type" : "String",
+                        "requered" : true
+                    },
+                    "data_end" : {
+                        "type" : "String",
+                        "requered" : true                    
+                    },
+                    "id_car" : {
+                        "type" : "mongoose.Schema.Types.ObjectId",
+                        "ref" : "car",
+                        "requered" : true                    
+                    },
+                    "final_value" : {
+                        "type" : "string",
+                        "requered" : true                    
+                    }                                       
+                }                
+            },
+            "fleet" : {
+                "type" : "object",
+                "properties" : {
+                    "id_car" : {
+                        "type" : "mongoose.Schema.Types.ObjectId",
+                        "ref" : "car",
+                        "requered" : true
+                    },
+                    "id_rental" : {
+                        "type" : "mongoose.Schema.Types.ObjectId",
+                        "ref" : "rental",
+                        "requered" : true
+                    },
+                    "status" : {
+                        "type" : "String",
+                        "requered" : true,
+                        "enum" : ["available" , "unavailable" , "rented"]
+                    },
+                    "daily_value" : {
+                        "type" : "string",
+                        "requered" : true                    
+                    },
+                    "plate" : {
+                        "type" : "string",
+                        "requered" : true                    
+                    }                                       
                 }                
             }
         },

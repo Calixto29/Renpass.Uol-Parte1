@@ -7,11 +7,11 @@ const ReserveSchema = new mongoose.Schema({
 		ref: "Person",
 		required: true
 	},
-	date_start: {
+	data_start: {
 		type: String,
 		required: true
 	},
-	date_end: {
+	data_end: {
 		type: String,
 		required: true
 	},

@@ -4,8 +4,8 @@ const Car = require('../app/schema/CarSchema')
 
 const authSchemaReserve = joi.object({
 	id_user: joi.string().required(),
-	date_start: joi.string().required(),
-    date_end: joi.string().required(),
+	data_start: joi.string().required(),
+    data_end: joi.string().required(),
     id_car: joi.string().required(),
 	id_rental: joi.string().required(),
     final_value: joi.string().required() 	
