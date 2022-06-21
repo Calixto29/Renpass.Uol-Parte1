@@ -814,6 +814,187 @@
                     }
                 }
             }            
+        },
+        "/fleet" : {  
+            "post" : {
+                "summary" : "Cadastro de frota de veículos",
+                "description" : "Essa rota será responsável por cadastrar uma frota de veículos de uma locadora cadastrada",
+                "tags" : ["Fleet"],
+                "security" : [{"bearerAuth" : []}],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/fleet"                                 
+                            },
+                            "examples" : {
+                                "fleet" : {
+                                    "value" : {
+                                        "id_car": "b149e5bdggg34396a07fd3098",
+                                        "status": "available",
+                                        "daily_value ": "100,00",
+                                        "id_rental": "b149e5bda345ddd5a12d396a07fd3098",
+                                        "plate": "ABC1234"                                              
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "201" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/fleet"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/" : {
+            "get" : {
+                "description" : "Busca todos as frotas de veículos cadastradas de locadoras cadastradas",
+                "summary" : "Busca todos as frotas de veículos de locadoras cadastradas",
+                "tags" : ["Fleet"],
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/fleet"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/{listFleetId}" : {
+            "get" : {
+                "description" : "Busca uma frota de veículos cadastrada pelo ID",
+                "summary" : "Busca uma frota de veículo cadastrada pelo ID",
+                "tags" : ["Fleet"],
+                "parameters" :  [
+                    {
+                        "name" : "listFleetId",
+                        "in" : "path",
+                        "description" : "Id de frota de veículo cadastrada para busca",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/fleet"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        },
+        "/fleet/{putFleet}" : {
+            "put" : {                
+                "description" : "Atualiza os dados de uma reserva de veículos cadastrada pelo ID",
+                "summary" : "Atualiza os dados de uma reserva de veículos cadastrada pelo ID",
+                "tags" : ["Fleet"],
+                "security" : [{ "bearerAuth" : [] }],
+                "parameters" :  [
+                    {
+                        "name" : "putFleet",
+                        "in" : "path",
+                        "description" : "Id de frota cadastrada para busca",
+                        "required" : true
+                    }
+                ],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/fleet"                                 
+                            },
+                            "examples" : {
+                                "reserve" : {
+                                    "value" : {
+                                        "id_car": "b149e5bdggg34396a07fd3098",
+                                        "status": "available",
+                                        "daily_value ": "100,00",
+                                        "id_rental": "b149e5bda345ddd5a12d396a07fd3098",
+                                        "plate": "ABC1234"                                           
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/fleet"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/fleet/{deleteFleet}" : {
+            "delete" : {
+                "description" : "Exclui os dados de uma frota de veículos cadastrada pelo ID",
+                "summary" : "Exclui os dados de uma frota de veículos cadastrada pelo ID",
+                "tags" : ["Fleet"],
+                "parameters" :  [
+                    {
+                        "name" : "deleteFleet",
+                        "in" : "path",
+                        "description" : "Id de frota de veículos cadastrado para busca e exclusão dos dados",
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "400": {
+                        "description" : "Bad Request"
+                    },
+                    "204" : {
+                        "description" : " ",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "object",                                    
+                                    "$ref" : "#/components/schemas/fleet"                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
         }        
     },
     "components" : {
