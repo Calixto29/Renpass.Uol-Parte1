@@ -42,8 +42,11 @@ module.exports = async (req, res, next) => {
 
 
 	const { error } = await authSchemaPerson.validate(req.body, { abortEarly: true});
+	
 	if (error) throw error
+
 	return next();
+
 	} catch (error) {		
 		return res.status(400).json({Error: error});
 	};

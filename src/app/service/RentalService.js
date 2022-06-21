@@ -1,4 +1,5 @@
 const RentalRepository = require('../repository/RentalRespository');
+const validarCnpj = require('../../middleware/validaCnpj')
 const axios = require("axios").default;
 
 class RentalService {
@@ -15,7 +16,13 @@ class RentalService {
             campo.district = bairro,
             campo.city = localidade,
             campo.state = uf                  
-    };                 
+    }; 
+    
+    if (payload.cnpj) { //se existir um campo no body ele faz a verificação.
+        if (!validarCnpj (payload.cnpj)) {
+			throw new Error('CNPJ invalid')
+		};
+    }
 
         const result = await RentalRepository.create(payload);
         return result; 
@@ -31,7 +38,8 @@ class RentalService {
         return result;
     };
 
-    async update(id, body) { 
+    async update(id, body) {         
+
         for(let values = 0; values < body.address.length; values++) {
             const busca = body.address;
             const campo = busca[values];
@@ -43,7 +51,7 @@ class RentalService {
             campo.district = bairro,
             campo.city = localidade,
             campo.state = uf                  
-    };                 
+    };     
 
         const result = await RentalRepository.update(id, body);
         return result; 

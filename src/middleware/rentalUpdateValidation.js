@@ -1,5 +1,4 @@
 const joi = require("@hapi/joi");
-const validarCnpj = require("../middleware/validaCnpj");
 
 const authSchemaRental = joi.object({
 	name: joi.string(),
@@ -9,22 +8,16 @@ const authSchemaRental = joi.object({
 		zipCode: joi.string(),
 		number: joi.string(),
 		city: joi.string(),
-		state: joi.string(),
-		isFilial: joi.boolean("true" , "false")
+		state: joi.string()		
 })),
 	
 });
 
-module.exports = async (req, res, next) => {
+module.exports = (req, res, next) => {
 	try {
-		const reqBody = req.body;	
-
-		if (!validarCnpj (reqBody.cnpj)) {
-			return res.status(400).json({ error: "CNPJ is invalid" });
-		};	
-
-	const { error } = await authSchemaRental.validate(req.body, { abortEarly: true});
+		const { error } = authSchemaRental.validate(req.body, { abortEarly: true });
 	if (error) throw error
+
 	return next();
 	
 	} catch (error) {		
