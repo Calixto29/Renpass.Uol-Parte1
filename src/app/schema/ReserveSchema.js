@@ -19,7 +19,7 @@ const ReserveSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Car",
 		required: true
-	},	
+	},		
 	final_value: {
 		type: String,
 		required: true

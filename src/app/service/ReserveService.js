@@ -1,10 +1,14 @@
 const ReserveRepository = require ("../repository/ReserveRepository");
-class ReserveService{
+// const RentalRepository = require("../repository/RentalRespository");
 
-    async create(payload) { 
-        const result = await ReserveRepository.create(payload);
-        return result; 
+
+class ReserveService {
+
+    async create(payload) {
+        const result =  await ReserveRepository.create(payload);
+        return result;         
     }
+
     async listReserve(payload) {
         const result = await ReserveRepository.listReserve(payload);
         return result;

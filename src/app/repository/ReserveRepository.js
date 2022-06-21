@@ -5,7 +5,8 @@ class ReserveRepository {
     async create(payload) {
         return await ReserveSchema.create(payload); 
     }
-    async listReserve(payload) {        
+    async listReserve(payload) {
+                
         const {page, perPage} = payload;        
         
         const allPage = {
@@ -25,11 +26,14 @@ class ReserveRepository {
             offset: 0,
             customLabels: allPage
         };        
+        
         return ReserveSchema.paginate(payload, options);        
 
     }
     async listId(payload) {
+               
         return await ReserveSchema.findById(payload);
+        
     }
     async updateReserveId(id, body) {           
         return ReserveSchema.findByIdAndUpdate(id, body);
