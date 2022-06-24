@@ -1,5 +1,3 @@
-const number = require('@hapi/joi/lib/types/number');
-const string = require('@hapi/joi/lib/types/string');
 const mongoosePaginate = require('mongoose-paginate-v2');
 const mongoose = require ('mongoose');
 
@@ -28,8 +26,7 @@ const CarSchema = new mongoose.Schema({
 		description: {
 			type: String,
 			required: true,			
-		},
-		// _id: false,
+		},		
     }],
 	passengersQtd: {
 		type: Number,

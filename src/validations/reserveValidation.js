@@ -1,5 +1,4 @@
-// const mongoose = require ('mongoose');
-const joi = require("@hapi/joi");
+const joi = require("joi");
 const Car = require('../app/schema/CarSchema')
 
 const authSchemaReserve = joi.object({

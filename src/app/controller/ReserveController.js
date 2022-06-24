@@ -2,10 +2,7 @@ const ReserveService = require('../service/ReserveService');
 
 class  ReserveController {    
     async create(req, res) {        
-        try {
-            // const {id_rental} = req.params;
-            // const reqBody = req.body;            
-            // const result = await ReserveService.create( { ...reqBody, id_rental: String(id_rental) } );            
+        try {            
             const result = await ReserveService.create(req.body);
             return res.status(201).json(result);
         } catch(error) {             

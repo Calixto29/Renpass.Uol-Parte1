@@ -1,5 +1,5 @@
 const RentalRepository = require('../repository/RentalRespository');
-const validarCnpj = require('../../middleware/validaCnpj')
+const validarCnpj = require('../../utils/validaCnpj')
 const axios = require("axios").default;
 
 class RentalService {
@@ -18,7 +18,7 @@ class RentalService {
             campo.state = uf                  
     }; 
     
-    if (payload.cnpj) { //se existir um campo no body ele faz a verificação.
+    if (payload.cnpj) { 
         if (!validarCnpj (payload.cnpj)) {
 			throw new Error('CNPJ invalid')
 		};

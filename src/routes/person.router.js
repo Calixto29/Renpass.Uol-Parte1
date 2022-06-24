@@ -1,8 +1,6 @@
 const PersonController = require('../app/controller/PersonController');
-const authSchemaPerson = require('../middleware/personValidation');
-const authSchemaUpdatePerson = require('../middleware/personUpdateValidation');
-
-// const express = require('express');
+const authSchemaPerson = require('../validations/personValidation');
+const authSchemaUpdatePerson = require('../validations/personUpdateValidation');
 const Person = require('../app/schema/PersonSchema');
 
 

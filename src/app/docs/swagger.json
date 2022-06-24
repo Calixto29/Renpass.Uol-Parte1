@@ -1,0 +1,1257 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Renpass.Uol",
+    "description": "Está é uma API RestFull com objetivo de cadastro de usuários, veículos e locadoras de veículos",
+    "termsOfService": "",
+    "contact": {
+      "email": "fernando@email.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1/",
+      "description": "API Runpass.Uol"
+    }
+  ],
+  "paths": {
+    "/person": {
+      "post": {
+        "summary": "Cadastro de usuário",
+        "description": "Essa rota será responsável por cadastrar um novo usuário",
+        "tags": [
+          "Person"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/person"
+              },
+              "examples": {
+                "person": {
+                  "value": {
+                    "name": "Fernando Torres",
+                    "cpf": "000.000.000-00",
+                    "birthDay": "29/06/1987",
+                    "email": "fernando@email.com",
+                    "password": "123456",
+                    "canDrive": "yes"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/person/": {
+      "get": {
+        "description": "Busca todos os usuários cadastrados",
+        "summary": "Busca todos os usuários cadastrados",
+        "tags": [
+          "Person"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/person/{listId}": {
+      "get": {
+        "description": "Busca um usuário cadastrado pelo ID",
+        "summary": "Busca um usuário cadastrado pelo ID",
+        "tags": [
+          "Person"
+        ],
+        "parameters": [
+          {
+            "name": "listId",
+            "in": "path",
+            "description": "Id de usuário cadastrado para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/person"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/person/{update}": {
+      "put": {
+        "description": "Atualiza os dados de um usuário cadastrado pelo ID",
+        "summary": "Atualiza os dados de um usuário cadastrado pelo ID",
+        "tags": [
+          "Person"
+        ],
+        "parameters": [
+          {
+            "name": "update",
+            "in": "path",
+            "description": "Id de usuário cadastrado para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/person"
+              },
+              "examples": {
+                "person": {
+                  "value": {
+                    "name": "Fernando Torres",
+                    "cpf": "000.000.000-00",
+                    "birthDay": "29/06/1987",
+                    "email": "fernando@email.com",
+                    "password": "123456",
+                    "canDrive": "yes"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/person/{delete}": {
+      "delete": {
+        "description": "Exclui os dados de um usuário cadastrado pelo ID",
+        "summary": "Exclui os dados de um usuário cadastrado pelo ID",
+        "tags": [
+          "Person"
+        ],
+        "parameters": [
+          {
+            "name": "delete",
+            "in": "path",
+            "description": "Id de usuário cadastrado para busca e exclusão dos dados",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/car": {
+      "post": {
+        "summary": "Cadastro de veículo",
+        "description": "Essa rota será responsável por cadastrar um novo veículo",
+        "tags": [
+          "Car"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/car"
+              },
+              "examples": {
+                "car": {
+                  "value": {
+                    "model": "S10 2.8",
+                    "type": "Sedan",
+                    "brand": "GM",
+                    "color": "branco",
+                    "year": "2021",
+                    "accessories": [
+                      {
+                        "description": "Ar-condicionado"
+                      },
+                      {
+                        "description": "Dir. Hidráulica"
+                      },
+                      {
+                        "description": "Cabine Dupla"
+                      },
+                      {
+                        "description": "Tração 4x4"
+                      },
+                      {
+                        "description": "4 portas"
+                      },
+                      {
+                        "description": "Diesel"
+                      },
+                      {
+                        "description": "Air bag"
+                      },
+                      {
+                        "description": "ABS"
+                      }
+                    ],
+                    "passengersQtd": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/car/": {
+      "get": {
+        "description": "Busca todos os veículos cadastrados",
+        "summary": "Busca todos os veículos cadastrados",
+        "tags": [
+          "Car"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/car/{listCarId}": {
+      "get": {
+        "description": "Busca um veículo cadastrado pelo ID",
+        "summary": "Busca um veículo cadastrado pelo ID",
+        "tags": [
+          "Car"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "listCarId",
+            "in": "path",
+            "description": "Id de veículo cadastrado para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/car/{putCar}": {
+      "put": {
+        "description": "Atualiza os dados de um veículo cadastrado pelo ID",
+        "summary": "Atualiza os dados de um veículo cadastrado pelo ID",
+        "tags": [
+          "Car"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "putCar",
+            "in": "path",
+            "description": "Id de veículo cadastrado para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/car"
+              },
+              "examples": {
+                "car": {
+                  "value": {
+                    "model": "S10 2.8",
+                    "type": "Sedan",
+                    "brand": "GM",
+                    "color": "branco",
+                    "year": "2021",
+                    "accessories": [
+                      {
+                        "description": "Ar-condicionado"
+                      },
+                      {
+                        "description": "Dir. Hidráulica"
+                      },
+                      {
+                        "description": "Cabine Dupla"
+                      },
+                      {
+                        "description": "Tração 4x4"
+                      },
+                      {
+                        "description": "4 portas"
+                      },
+                      {
+                        "description": "Diesel"
+                      },
+                      {
+                        "description": "Air bag"
+                      },
+                      {
+                        "description": "ABS"
+                      }
+                    ],
+                    "passengersQtd": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/car/{deleteCar}": {
+      "delete": {
+        "description": "Exclui os dados de um veículo cadastrado pelo ID",
+        "summary": "Exclui os dados de um veículo cadastrado pelo ID",
+        "tags": [
+          "Car"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "deleteCar",
+            "in": "path",
+            "description": "Id de veículo cadastrado para busca e exclusão dos dados",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/rental": {
+      "post": {
+        "summary": "Cadastro de locadora de veículos",
+        "description": "Essa rota será responsável por cadastrar uma nova locadora de veículos usuário",
+        "tags": [
+          "Rental"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rental"
+              },
+              "examples": {
+                "person": {
+                  "value": {
+                    "name": "Localiza Rent a Car",
+                    "cnpj": "16.670.085/0001-55",
+                    "activities": "Aluguel de Carros E Gestão de Frotas",
+                    "address": [
+                      {
+                        "zipCode": "96200-200",
+                        "street": "Rua General Canabarro",
+                        "complement": "Muro A",
+                        "district": "Centro",
+                        "number": "1234",
+                        "city": "Rio Grande",
+                        "state": "RS",
+                        "isFilial": "true"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/rental"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/rental/": {
+      "get": {
+        "description": "Busca todos as locadoras de veículos cadastradas",
+        "summary": "Busca todos as locadoras de veículos cadastradas",
+        "tags": [
+          "Rental"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/rental"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/rental/{listId}": {
+      "get": {
+        "description": "Busca uma locadora de veículo cadastrada pelo ID",
+        "summary": "Busca uma locadora de veículo cadastrada pelo ID",
+        "tags": [
+          "Rental"
+        ],
+        "parameters": [
+          {
+            "name": "listId",
+            "in": "path",
+            "description": "Id de locadora de veículo cadastrada para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/rental"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/rental/{update}": {
+      "put": {
+        "description": "Atualiza os dados de uma locadora de veículos cadastrada pelo ID",
+        "summary": "Atualiza os dados de uma locadora de veículos cadastrada pelo ID",
+        "tags": [
+          "Rental"
+        ],
+        "parameters": [
+          {
+            "name": "update",
+            "in": "path",
+            "description": "Id de locadora cadastrada para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rental"
+              },
+              "examples": {
+                "rental": {
+                  "value": {
+                    "name": "Localiza Rent a Car",
+                    "cnpj": "16.670.085/0001-55",
+                    "activities": "Aluguel de Carros E Gestão de Frotas",
+                    "address": [
+                      {
+                        "zipCode": "96200-200",
+                        "street": "Rua General Canabarro",
+                        "complement": "Muro A",
+                        "district": "Centro",
+                        "number": "1234",
+                        "city": "Rio Grande",
+                        "state": "RS",
+                        "isFilial": "false"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/rental"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/rental/{delete}": {
+      "delete": {
+        "description": "Exclui os dados de uma locadora veículos cadastrada pelo ID",
+        "summary": "Exclui os dados de uma locadora veículos cadastrada pelo ID",
+        "tags": [
+          "Rental"
+        ],
+        "parameters": [
+          {
+            "name": "delete",
+            "in": "path",
+            "description": "Id de locadora de veículos cadastrado para busca e exclusão dos dados",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/rental"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/reserve": {
+      "post": {
+        "summary": "Cadastro de reserva de veículos",
+        "description": "Essa rota será responsável por cadastrar uma reserva de veículos",
+        "tags": [
+          "Reserve"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reserve"
+              },
+              "examples": {
+                "reserve": {
+                  "value": {
+                    "id_user": "b149e5bda4f24123g34396a07fd3098",
+                    "data_start": "20/11/2021",
+                    "data_end": "30/11/2021",
+                    "id_car": "b149e5bda4f24e25a12d396a45645398",
+                    "id_rental": "b149e5bda345232e25a12d396a07fd3098",
+                    "final_value": "500,00"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/reserve"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/reserve/": {
+      "get": {
+        "description": "Busca todos as reservas de veículos cadastradas",
+        "summary": "Busca todos as reservas de veículos cadastradas",
+        "tags": [
+          "Reserve"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/reserve"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/reserve/{listId}": {
+      "get": {
+        "description": "Busca uma reserva de veículo cadastrada pelo ID",
+        "summary": "Busca uma reserva de veículo cadastrada pelo ID",
+        "tags": [
+          "Reserve"
+        ],
+        "parameters": [
+          {
+            "name": "listId",
+            "in": "path",
+            "description": "Id de reserva de veículo cadastrada para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/reserve"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/reserve/{updateReserveId}": {
+      "put": {
+        "description": "Atualiza os dados de uma reserva de veículos cadastrada pelo ID",
+        "summary": "Atualiza os dados de uma reserva de veículos cadastrada pelo ID",
+        "tags": [
+          "Reserve"
+        ],
+        "parameters": [
+          {
+            "name": "updateReserveId",
+            "in": "path",
+            "description": "Id de reserva cadastrada para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reserve"
+              },
+              "examples": {
+                "reserve": {
+                  "value": {
+                    "id_user": "b149e5bda4f24123g34396a07fd3098",
+                    "data_start": "20/11/2021",
+                    "data_end": "30/11/2021",
+                    "id_car": "b149e5bda4f24e25a12d396a45645398",
+                    "id_rental": "b149e5bda345232e25a12d396a07fd3098",
+                    "final_value": "500,00"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/reserve"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/reserve/{deleteReserve}": {
+      "delete": {
+        "description": "Exclui os dados de uma reserva veículos cadastrada pelo ID",
+        "summary": "Exclui os dados de uma reserva veículos cadastrada pelo ID",
+        "tags": [
+          "Reserve"
+        ],
+        "parameters": [
+          {
+            "name": "deleteReserve",
+            "in": "path",
+            "description": "Id de reserva de veículos cadastrado para busca e exclusão dos dados",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/reserve"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/fleet": {
+      "post": {
+        "summary": "Cadastro de frota de veículos",
+        "description": "Essa rota será responsável por cadastrar uma frota de veículos de uma locadora cadastrada",
+        "tags": [
+          "Fleet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/fleet"
+              },
+              "examples": {
+                "fleet": {
+                  "value": {
+                    "id_car": "b149e5bdggg34396a07fd3098",
+                    "status": "available",
+                    "daily_value ": "100,00",
+                    "id_rental": "b149e5bda345ddd5a12d396a07fd3098",
+                    "plate": "ABC1234"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/fleet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/fleet/": {
+      "get": {
+        "description": "Busca todos as frotas de veículos cadastradas de locadoras cadastradas",
+        "summary": "Busca todos as frotas de veículos de locadoras cadastradas",
+        "tags": [
+          "Fleet"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/fleet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/fleet/{listFleetId}": {
+      "get": {
+        "description": "Busca uma frota de veículos cadastrada pelo ID",
+        "summary": "Busca uma frota de veículo cadastrada pelo ID",
+        "tags": [
+          "Fleet"
+        ],
+        "parameters": [
+          {
+            "name": "listFleetId",
+            "in": "path",
+            "description": "Id de frota de veículo cadastrada para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/fleet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/fleet/{putFleet}": {
+      "put": {
+        "description": "Atualiza os dados de uma reserva de veículos cadastrada pelo ID",
+        "summary": "Atualiza os dados de uma reserva de veículos cadastrada pelo ID",
+        "tags": [
+          "Fleet"
+        ],
+        "parameters": [
+          {
+            "name": "putFleet",
+            "in": "path",
+            "description": "Id de frota cadastrada para busca",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/fleet"
+              },
+              "examples": {
+                "reserve": {
+                  "value": {
+                    "id_car": "b149e5bdggg34396a07fd3098",
+                    "status": "available",
+                    "daily_value ": "100,00",
+                    "id_rental": "b149e5bda345ddd5a12d396a07fd3098",
+                    "plate": "ABC1234"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/fleet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/fleet/{deleteFleet}": {
+      "delete": {
+        "description": "Exclui os dados de uma frota de veículos cadastrada pelo ID",
+        "summary": "Exclui os dados de uma frota de veículos cadastrada pelo ID",
+        "tags": [
+          "Fleet"
+        ],
+        "parameters": [
+          {
+            "name": "deleteFleet",
+            "in": "path",
+            "description": "Id de frota de veículos cadastrado para busca e exclusão dos dados",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/fleet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "car": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "brand": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "year": {
+            "type": "string"
+          },
+          "accessories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "passengersqtd": {
+            "type": "number"
+          }
+        }
+      },
+      "person": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "birthday": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "canDrive": {
+            "type": "string"
+          }
+        }
+      },
+      "rental": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "cnpj": {
+            "type": "string"
+          },
+          "activities": {
+            "type": "string"
+          },
+          "address": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cep": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "string"
+                },
+                "isFilial": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "reserve": {
+        "type": "object",
+        "properties": {
+          "id_user": {
+            "type": "string"
+          },
+          "data_start": {
+            "type": "string"
+          },
+          "data_end": {
+            "type": "string"
+          },
+          "id_car": {
+            "type": "string"
+          },
+          "final_value": {
+            "type": "string"
+          }
+        }
+      },
+      "fleet": {
+        "type": "object",
+        "properties": {
+          "id_car": {
+            "type": "string"
+          },
+          "id_rental": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unavailable",
+              "rented"
+            ]
+          },
+          "daily_value": {
+            "type": "string"
+          },
+          "plate": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

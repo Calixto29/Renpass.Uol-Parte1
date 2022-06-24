@@ -1,5 +1,5 @@
 const CarController = require('../app/controller/CarController');
-const carValidation = require('../middleware/carValidation');
+const carValidation = require('../validations/carValidation');
 
 module.exports = (server, routes, prefix ='/api/v1/car') => { 
     routes.post('/', carValidation, CarController.create);

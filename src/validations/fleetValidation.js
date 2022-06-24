@@ -1,4 +1,4 @@
-const joi = require("@hapi/joi");
+const joi = require("joi");
 const Fleet = require("../app/schema/FleetSchema");
 
 const authSchemaFleet = joi.object({

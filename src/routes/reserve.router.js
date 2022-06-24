@@ -1,5 +1,5 @@
 const ReserveController = require('../app/controller/ReserveController');
-const reserveValidation = require('../middleware/reserveValidation');
+const reserveValidation = require('../validations/reserveValidation');
 
 module.exports = (server, routes, prefix ='/api/v1/rental/:id_rental/reserve') => {
     routes.post('/', reserveValidation, ReserveController.create);

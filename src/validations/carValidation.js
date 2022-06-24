@@ -1,4 +1,4 @@
-const joi = require("@hapi/joi");
+const joi = require("joi");
 
 const authSchemaCar = joi.object({
 	model: joi.string().min(6).required(),

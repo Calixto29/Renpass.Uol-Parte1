@@ -1,9 +1,9 @@
-const joi = require("@hapi/joi");
+const joi = require("joi");
 
 
 const authSchemaRental = joi.object({
 	name: joi.string().required(),
-	cnpj: joi.string().required().regex(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/),
+	cnpj: joi.string().regex(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/).required(),
     activities: joi.string().min(5).required(),
     address: joi.array().items(joi.object({
 		zipCode: joi.string(),

@@ -1,4 +1,3 @@
-//validação de tipos de campo
 class EnumErro extends Error {
 	constructor(campos) {
 		super();
