@@ -1,50 +1,51 @@
-const joi = require("joi");
-const moment = require("moment");
-const Person = require("../app/schema/PersonSchema");
+const joi = require('joi');
+const moment = require('moment');
+const Person = require('../app/schema/PersonSchema');
 const validarCpf = require('../utils/validaCpf');
 
 const authSchemaPerson = joi.object({
-	name: joi.string().min(6).required(),
-	cpf: joi.string().regex(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/).required(),
-	birthDay: joi.string().required(),
-	email: joi.string().email().lowercase().required(),
-	password: joi.string().min(6).required(),
-	canDrive: joi.string().valid().required("yes" , "no")
+  name: joi.string().min(6).required(),
+  cpf: joi
+    .string()
+    .regex(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)
+    .required(),
+  birthDay: joi.string().required(),
+  email: joi.string().email().lowercase().required(),
+  password: joi.string().min(6).required(),
+  canDrive: joi.string().valid().required('yes', 'no')
 });
 
 module.exports = async (req, res, next) => {
-	try {
-		const reqBody = req.body;
+  try {
+    const reqBody = req.body;
 
-		const { email } = req.body;	
-		
-		const birthDay = moment(reqBody.birthDay, "DD/MM/YYYY").format("YYYY/MM/DD");
+    const { email } = req.body;
 
-		const birthDayValidate = moment().diff(birthDay, "years", false) < 18;		
+    const birthDay = moment(reqBody.birthDay, 'DD/MM/YYYY').format('YYYY/MM/DD');
 
-		if (await Person.findOne( { email }))
-			return res.status(400).send( { error: 'email already exists'}); 			
+    const birthDayValidate = moment().diff(birthDay, 'years', false) < 18;
 
-		if (birthDayValidate) {
-			return res.status(400).json({ message: "age must be over 18" });			
-		}
-		
-		if (!validarCpf(reqBody.cpf)) {
-			return res.status(400).json({ error: "CPF is invalid" })
-		};		
+    if (await Person.findOne({ email })) return res.status(400).send({ error: 'email already exists' });
 
-		if (req.method == "POST") {
-			await authSchemaPerson.validateAsync({
-				...reqBody, birthDay
+    if (birthDayValidate) {
+      return res.status(400).json({ message: 'age must be over 18' });
+    }
 
-			});
-		};						
+    if (!validarCpf(reqBody.cpf)) {
+      return res.status(400).json({ error: 'CPF is invalid' });
+    }
 
+    if (req.method == 'POST') {
+      await authSchemaPerson.validateAsync({
+        ...reqBody,
+        birthDay
+      });
+    }
 
-	const { error } = await authSchemaPerson.validate(req.body, { abortEarly: true});
-	if (error) throw error
-	return next();
-	} catch (error) {		
-		return res.status(400).json({Error: error});
-	};
+    const { error } = await authSchemaPerson.validate(req.body, { abortEarly: true });
+    if (error) throw error;
+    return next();
+  } catch (error) {
+    return res.status(400).json({ Error: error });
+  }
 };

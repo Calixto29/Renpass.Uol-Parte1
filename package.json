@@ -26,6 +26,12 @@
     "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-plugin": "^1.0.11",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-prettier": "^0.0.0-empty",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.7.1"
   }
 }
